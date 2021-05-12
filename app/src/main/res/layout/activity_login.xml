@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:background="@drawable/back_login"
+    tools:context=".login.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rotationX="180"
+            android:rotationY="180"
+            android:src="@drawable/shape_shadow"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="مدیریت مالی"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ثبت و رصد هزینه ها و دارمد های ضروری"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"/>
+            <Button
+                android:id="@+id/btn_go_to_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_welcome"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:text="بزن بریم"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:textSize="16dp"
+                android:drawableRight="@drawable/ic_baseline_arrow_right_alt_24"
+                android:paddingRight="16dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_singin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:background="@drawable/glass_back"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp">
+
+
+        <TextView
+            android:id="@+id/txt_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ورود"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:textSize="24dp"
+            android:layout_centerHorizontal="true"/>
+        <io.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/shape_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp"
+            android:layout_below="@id/txt_login"
+            android:layout_marginTop="8dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ایمیل"
+                    android:textColorHint="@color/yellow"
+                    app:boxStrokeColor="@color/yellow"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textEmailAddress"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="رمز عبور"
+
+                    android:layout_below="@id/outlinedTextField"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/yellow"
+                    app:boxStrokeColor="@color/yellow"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/yellow"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPassword"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </io.github.florent37.shapeofview.shapes.RoundRectView>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shape_input"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_welcome"
+            android:text="ورود "
+            android:textColor="@color/white" />
+        <LinearLayout
+            android:id="@+id/linear_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login"
+            android:weightSum="2"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="حساب کاربری ندارید؟"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnGoToSingUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_account"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_black"
+            android:text="ثبت نام"
+            android:textColor="@color/yellow"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_singUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:background="@drawable/glass_back"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp">
+
+
+        <TextView
+            android:id="@+id/txt_singUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ورود"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:textSize="24dp"
+            android:layout_centerHorizontal="true"/>
+        <io.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/shape_input_singUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:shape_roundRect_bottomLeftRadius="10dp"
+            app:shape_roundRect_bottomRightRadius="10dp"
+            app:shape_roundRect_topLeftRadius="10dp"
+            app:shape_roundRect_topRightRadius="10dp"
+            android:layout_below="@id/txt_singUp"
+            android:layout_marginTop="8dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField_singUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ایمیل"
+                    android:textColorHint="@color/yellow"
+                    app:boxStrokeColor="@color/yellow"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textEmailAddress"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/outlinedTextField_singUp"
+                    android:hint="رمز عبور"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/yellow"
+                    app:boxStrokeColor="@color/yellow"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/yellow"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPassword"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_password_re"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="تکرار رمز عبور"
+                    android:layout_below="@id/input_password"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/yellow"
+                    app:boxStrokeColor="@color/yellow"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/yellow"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPassword"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </io.github.florent37.shapeofview.shapes.RoundRectView>
+        <Button
+            android:id="@+id/btn_shingUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shape_input_singUp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_black"
+            android:text="ثبت نام "
+            android:textColor="@color/yellow" />
+        <LinearLayout
+            android:id="@+id/linear_account_singUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_shingUp"
+            android:weightSum="2"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="قبلا ثبت نام کرده اید؟"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnBackToSingIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_account_singUp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_welcome"
+            android:text="ورود به حساب کاربری"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relative_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/glass_back">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="8dp"
+            android:background="@drawable/shape_back_loading">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/prgress_draw"
+                android:progressTint="@color/yellow" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
