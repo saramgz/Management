@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    tools:context=".AppActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_all_money"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/back_all_money">
+
+        <TextView
+            android:id="@+id/txtAllMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.775.0000"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="دآرمد ها"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="32dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/in_out_money"
+        android:layout_below="@+id/relative_all_money"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_input_money"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="هزینه ها"
+                android:textColor="@color/white"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_in_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="2.775.0000"
+                android:textColor="@color/white"
+                android:fontFamily="@font/iran_sans"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/back_out_money"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="هزینه ها"
+                android:textColor="@color/white"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_out_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="2.775.0000"
+                android:textColor="@color/white"
+                android:fontFamily="@font/iran_sans"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/in_out_money"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:textSize="16dp"
+            android:text="آخرین تراکنش ها"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recy_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/black"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottombar_menu" />
+</RelativeLayout>

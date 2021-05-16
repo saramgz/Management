@@ -1,6 +1,7 @@
 package com.example.management.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,35 +15,63 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.management.AppActivity;
+import com.example.management.MainActivity;
 import com.example.management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
+import com.google.rpc.context.AttributeContext;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.Ref;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnGoLogIn,btnGoToSingUp,btnBackToSingIn,btnLogIn,btnSingUp;
-    RelativeLayout relative_welcome,relative_singIn,relative_singUp,relative_progress;
-    FirebaseFirestore db;
-    TextInputLayout emailSU,passSU,passReUS;
+    Button btnGoLogIn, btnGoToSingUp, btnBackToSingIn, btnLogIn, btnSingUp;
+    RelativeLayout relative_welcome, relative_singIn, relative_singUp, relative_progress;
+    static FirebaseFirestore db;
+    static DatabaseReference root;
+    TextInputLayout emailSU, passSU, passReUS,emailLogin,passLogin;
     boolean status = true;
+    DatabaseReference mDatabase;
+    static FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //findView
+        //findViewe(savedInstanceState);
+        //        setContentView(
         btnGoLogIn = findViewById(R.id.btn_go_to_login);
         relative_welcome = findViewById(R.id.relative_welcome);
         relative_singIn = findViewById(R.id.relative_singin);
@@ -55,10 +84,14 @@ public class LoginActivity extends AppCompatActivity {
         passSU = findViewById(R.id.input_password);
         passReUS = findViewById(R.id.input_password_re);
         relative_progress = findViewById(R.id.relative_progress);
+        emailLogin  = findViewById(R.id.outlinedTextField);
+        passLogin = findViewById(R.id.passLogin);
 
 
         //code
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         //setClickEvent
@@ -86,74 +119,69 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                relative_progress.setVisibility(View.VISIBLE);
-                //Toast.makeText(LoginActivity.this, emailSU.getEditText().getText().toString(), Toast.LENGTH_SHORT).show();
-                if (!emailSU.getEditText().getText().toString().equals("") && !passSU.getEditText().getText().toString().equals("") && !passReUS.getEditText().getText().toString().equals("")
-                        && passSU.getEditText().getText().toString().equals(passReUS.getEditText().getText().toString()))
+                if (!emailSU.getEditText().getText().toString().equals("") && !passSU.getEditText().getText().toString().equals("") && passSU.getEditText().getText().toString().equals(passReUS.getEditText().getText().toString()))
                 {
-                    if (isUser(emailSU.getEditText().getText().toString())) {
-                        addNewUser(emailSU.getEditText().getText().toString() , passReUS.getEditText().getText().toString());
-                    }
-
+                    relative_progress.setVisibility(View.VISIBLE);
+                    mAuth.createUserWithEmailAndPassword(emailSU.getEditText().getText().toString(), passSU.getEditText().getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        relative_progress.setVisibility(View.GONE);
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(LoginActivity.this, "ثبت نام شما با موفیقت انجام شد", Toast.LENGTH_LONG).show();
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        relative_singUp.setVisibility(View.GONE);
+                                        relative_singIn.setVisibility(View.VISIBLE);
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                        relative_progress.setVisibility(View.GONE);
+                                        Toast.makeText(LoginActivity.this, "این ایمیل قبلا ثبت شده است.",
+                                                Toast.LENGTH_LONG).show();
+                                        updateUI();
+                                    }
+                                }
+                            });
+                }else {
+                    relative_progress.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, "مثادیر خاسته شده را به درستی وارد نمایید.", Toast.LENGTH_SHORT).show();
                 }
 
-                relative_progress.setVisibility(View.GONE);
             }
         });
 
-    }
-    public void addNewUser(String email , String pass){
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", email);
-        user.put("password", pass);
-
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        Toast.makeText(LoginActivity.this, documentReference.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error adding document", e);
-                        Toast.makeText(LoginActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    public boolean isUser(String sEmail){
-        status = true;
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.get("email").equals(sEmail)) {
-                                    Toast.makeText(LoginActivity.this, "این ایمیل قبلا ثبت شده است", Toast.LENGTH_SHORT).show();
-                                    status = false;
-                                    break;
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signInWithEmailAndPassword(emailLogin.getEditText().getText().toString(), passLogin.getEditText().getText().toString())
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d("TAG", "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    startActivity(new Intent(LoginActivity.this, AppActivity.class));
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w("TAG", "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
-
-                                //Log.d("TAG", document.getId() + " => " + document.get("email"));
                             }
-                        } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-        return status;
+                        });
+            }
+        });
+    }
+    public void updateUI(){
+
     }
 }
+
 
 
 
