@@ -1,7 +1,9 @@
 package com.example.management.login;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout emailSU, passSU, passReUS,emailLogin,passLogin;
     boolean status = true;
     DatabaseReference mDatabase;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     static FirebaseAuth mAuth;
 
 
@@ -70,89 +74,32 @@ public class LoginActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //findViewe(savedInstanceState);
-        //        setContentView(
-        btnGoLogIn = findViewById(R.id.btn_go_to_login);
-        relative_welcome = findViewById(R.id.relative_welcome);
+
         relative_singIn = findViewById(R.id.relative_singin);
-        relative_singUp = findViewById(R.id.relative_singUp);
         btnGoToSingUp = findViewById(R.id.btnGoToSingUp);
-        btnBackToSingIn = findViewById(R.id.btnBackToSingIn);
         btnLogIn = findViewById(R.id.btn_login);
-        btnSingUp = findViewById(R.id.btn_shingUp);
-        emailSU = findViewById(R.id.outlinedTextField_singUp);
-        passSU = findViewById(R.id.input_password);
-        passReUS = findViewById(R.id.input_password_re);
-        relative_progress = findViewById(R.id.relative_progress);
+
         emailLogin  = findViewById(R.id.outlinedTextField);
         passLogin = findViewById(R.id.passLogin);
 
 
-        //code
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
 
 
-        //setClickEvent
-        btnGoLogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                relative_welcome.setVisibility(View.GONE);
-                relative_singUp.setVisibility(View.VISIBLE);
-            }
-        });
+
 
         btnGoToSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                relative_singIn.setVisibility(View.GONE);
-                relative_singUp.setVisibility(View.VISIBLE);
+                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                finish();
             }
         });
 
-        btnBackToSingIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                relative_singUp.setVisibility(View.GONE);
-                relative_singIn.setVisibility(View.VISIBLE);
-            }
-        });
 
-        btnSingUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!emailSU.getEditText().getText().toString().equals("") && !passSU.getEditText().getText().toString().equals("") && passSU.getEditText().getText().toString().equals(passReUS.getEditText().getText().toString()))
-                {
-                    relative_progress.setVisibility(View.VISIBLE);
-                    mAuth.createUserWithEmailAndPassword(emailSU.getEditText().getText().toString(), passSU.getEditText().getText().toString())
-                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        relative_progress.setVisibility(View.GONE);
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(LoginActivity.this, "ثبت نام شما با موفیقت انجام شد", Toast.LENGTH_LONG).show();
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        relative_singUp.setVisibility(View.GONE);
-                                        relative_singIn.setVisibility(View.VISIBLE);
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                                        relative_progress.setVisibility(View.GONE);
-                                        Toast.makeText(LoginActivity.this, "این ایمیل قبلا ثبت شده است.",
-                                                Toast.LENGTH_LONG).show();
-                                        updateUI();
-                                    }
-                                }
-                            });
-                }else {
-                    relative_progress.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "مثادیر خاسته شده را به درستی وارد نمایید.", Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +112,9 @@ public class LoginActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("TAG", "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    saveUser(emailLogin.getEditText().getText().toString());
                                     startActivity(new Intent(LoginActivity.this, AppActivity.class));
+                                    finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG", "signInWithEmail:failure", task.getException());
@@ -177,21 +126,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void updateUI(){
+
+    public void saveUser(String email){
+            sharedPreferences = getSharedPreferences("shared_pref",MODE_PRIVATE);
+            editor = sharedPreferences.edit();
+            editor.putString("email",email);
+            editor.apply();
 
     }
+
 }
-
-
-
-
-
-
-
-
-//        Fragment welcomeFragment = new LoginFragment();
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.add(R.id.frame_login,welcomeFragment).commit();
-//
-//        Button btn;
-//        btn = findViewById(R.id.btn_go_to_login);

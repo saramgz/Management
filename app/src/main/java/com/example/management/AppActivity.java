@@ -8,12 +8,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -108,5 +111,11 @@ public class AppActivity extends AppCompatActivity {
     {
         super.onStop();
         adapter.stopListening();
+    }
+
+    public void loadUser(){
+        SharedPreferences prefs = getSharedPreferences("shared_pref", MODE_PRIVATE);
+        String name = prefs.getString("email", null);
+//        Toast.makeText(this, name, Toast.LENGTH_LONG).show();
     }
 }

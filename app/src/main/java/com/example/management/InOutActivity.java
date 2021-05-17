@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,8 +25,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 public class InOutActivity extends AppCompatActivity {
 
@@ -48,86 +52,45 @@ public class InOutActivity extends AppCompatActivity {
         t5 = findViewById(R.id.exET);
         input = findViewById(R.id.btnInput);
 
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("first", "Ada");
-//        user.put("last", "Lovelace");
-//        user.put("born", 1815);
 
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Time time = null;
                 Info data = new Info(t1.getEditText().getText().toString(),t2.getEditText().getText().toString(),t3.getEditText().getText().toString(),
                         t4.getEditText().getText().toString(),t5.getEditText().getText().toString());
 
-                mDatabase.child("users").child("cdcdsc").setValue(data);
+                mDatabase.child("users").child(random())
+                        .setValue(data);
             }
         });
 
 
 
+    }
 
-//        mbase = FirebaseDatabase.getInstance().getReference();
-
-//        Query query = FirebaseDatabase.getInstance()
-//                .getReference()
-//                .child("users")
-//                .orderByChild("money")
-//                .equalTo("123")
-//                .limitToLast(50);
-//
-//        ChildEventListener childEventListener = new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-//                // ...
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-//                // ...
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                // ...
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-//                // ...
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // ...
-//            }
-//        };
-//        query.addChildEventListener(childEventListener);
-
-
-        //////////
-//        recyclerView = findViewById(R.id.recycler1);
-//
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        FirebaseRecyclerOptions<Info> options =
-//                new FirebaseRecyclerOptions.Builder<Info>()
-//                        .setQuery(query, Info.class)
-//                        .build();
-////        Toast.makeText(this, options.getOwner().toString(), Toast.LENGTH_LONG).show();
-//
-//        adapter = new DataAdapter(options);
-//        recyclerView.setAdapter(adapter);
-
+    public String loadUser(){
+        SharedPreferences prefs = getSharedPreferences("shared_pref", MODE_PRIVATE);
+        return prefs.getString("email", null);
 
     }
 
 
 
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(10);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+//            tempChar = generator(20,45);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
 
 }
