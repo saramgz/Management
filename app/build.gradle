@@ -45,6 +45,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -75,7 +76,25 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
 
-    // Declare the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth'
+
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+
+    // Declare the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-database'
+
+
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
+
+    // FirebaseUI for Firebase Auth
+
+    // FirebaseUI for Cloud Storage
+    implementation 'com.firebaseui:firebase-ui-storage:7.1.1'
 }
+

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/relativeDetils"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
@@ -30,6 +32,7 @@
                     android:layout_gravity="center_vertical"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/txt_subject"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="بنزین"
@@ -37,6 +40,7 @@
                         android:textStyle="bold"
                         android:layout_gravity="center_horizontal"/>
                     <TextView
+                        android:id="@+id/txtCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="حساب خانه"
@@ -47,11 +51,14 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:background="@color/black"
+                    android:background="#E91E63"
                     android:layout_margin="8dp">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:tint="@color/white"
+                        android:src="@drawable/ic_gas_station"
+                        android:padding="8dp"/>
                 </RelativeLayout>
 
 
@@ -61,6 +68,7 @@
 
 
             <TextView
+                android:id="@+id/txtMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2.000.000"

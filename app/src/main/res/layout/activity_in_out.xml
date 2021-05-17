@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InOutActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/monetET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="مبلغ"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/subjectET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="عنوان"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/categoryET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="دسته بندی"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="تاریخ"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="توضیحات"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="enter"/>
+
+</LinearLayout>

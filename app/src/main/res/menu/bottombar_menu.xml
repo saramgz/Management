@@ -6,12 +6,12 @@
     app:bbn_rippleColor="#33ffffff">
 
     <item
-        android:id="@+id/bbn_item2"
+        android:id="@+id/btn_new"
         android:color="@android:color/holo_green_dark"
         android:icon="@drawable/ic_baseline_add_24"
         android:title="جدید" />
     <item
-        android:id="@+id/bbn_item3"
+        android:id="@+id/btnHome"
         android:color="@android:color/holo_orange_dark"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="اصلی" />
