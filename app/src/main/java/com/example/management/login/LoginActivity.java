@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     static FirebaseAuth mAuth;
+    RelativeLayout progress;
 
 
     @Override
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
         emailLogin  = findViewById(R.id.outlinedTextField);
         passLogin = findViewById(R.id.passLogin);
-
+        progress = findViewById(R.id.relative_progress_login);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progress.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(emailLogin.getEditText().getText().toString(), passLogin.getEditText().getText().toString())
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -113,11 +115,13 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.d("TAG", "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     saveUser(emailLogin.getEditText().getText().toString());
+                                    progress.setVisibility(View.GONE);
                                     startActivity(new Intent(LoginActivity.this, AppActivity.class));
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG", "signInWithEmail:failure", task.getException());
+                                    progress.setVisibility(View.GONE);
                                     Toast.makeText(LoginActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }

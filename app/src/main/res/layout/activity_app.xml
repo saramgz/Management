@@ -9,34 +9,41 @@
     tools:context=".AppActivity">
 
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/relative_all_money"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
         android:layout_margin="8dp"
-        android:background="@drawable/back_all_money">
+        app:cardCornerRadius="8dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/back_all_money">
 
-        <TextView
-            android:id="@+id/txtAllMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2.775.0000"
-            android:layout_centerVertical="true"
-            android:textColor="@color/white"
-            android:layout_alignParentLeft="true"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="8dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="موجودی"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="32dp"
-            android:textStyle="bold"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/txtAllMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/vazir_bold"
+                android:textColor="@color/white"
+                android:layout_alignParentLeft="true"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="موجودی"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="32dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
     <LinearLayout
         android:id="@+id/in_out_money"
         android:layout_below="@+id/relative_all_money"
@@ -44,57 +51,70 @@
         android:layout_height="150dp"
         android:orientation="horizontal"
         android:weightSum="2">
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/back_input_money"
-            android:layout_margin="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="درآمدها"
-                android:textColor="@color/white"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/txt_in_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="2.775.0000"
-                android:textColor="@color/white"
-                android:fontFamily="@font/iran_sans"
-                android:textStyle="bold"
-                android:textSize="16dp"/>
-        </RelativeLayout>
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back_input_money"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="درآمدها"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/txt_in_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/vazir_bold"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
 
-        <RelativeLayout
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/back_out_money"
-            android:layout_margin="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="هزینه ها"
-                android:textColor="@color/white"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/txt_out_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="2.775.0000"
-                android:textColor="@color/white"
-                android:fontFamily="@font/iran_sans"
-                android:textStyle="bold"
-                android:textSize="16dp"/>
-        </RelativeLayout>
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back_out_money">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="هزینه ها"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/txt_out_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/vazir_bold"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <LinearLayout
@@ -117,11 +137,20 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <Button
+    <RelativeLayout
         android:id="@+id/btnAddNew"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/cicle"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_plus"
+            android:layout_centerInParent="true"
+            android:tint="@color/white"/>
+    </RelativeLayout>
 </RelativeLayout>

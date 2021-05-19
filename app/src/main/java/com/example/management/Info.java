@@ -2,23 +2,20 @@ package com.example.management;
 
 public class Info {
 
-    public String money,subject,category,date,explain;
+    public String subject,category,date,explain;
     String uid,email,status;
+    int money;
 
     public Info(){}
-    public Info(String money, String subject, String category, String date, String explain) {
-        this.money = money;
+
+    public Info(String subject, String category, String date, String explain, String uid, String email, String status, int money) {
         this.subject = subject;
         this.category = category;
         this.date = date;
         this.explain = explain;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
+        this.uid = uid;
+        this.email = email;
+        this.status = status;
         this.money = money;
     }
 
@@ -52,5 +49,37 @@ public class Info {
 
     public void setExplain(String explain) {
         this.explain = explain;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }

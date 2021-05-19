@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textDirection="rtl"
+    android:background="@drawable/back_login"
     tools:context=".MainActivity">
 
 
@@ -36,12 +38,13 @@
                 android:text="مدیریت مالی"
                 android:layout_marginRight="4dp"
                 android:textColor="@color/white"
+                android:layout_gravity="right"
                 android:textStyle="bold"
                 android:textSize="40dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ثبت و رصد هزینه ها و دارمد های ضروری"
+                android:text="ثبت و رصد هزینه ها و دآرمد های ضروری"
                 android:textColor="@color/white"
                 android:textSize="24dp"
                 android:layout_marginLeft="64dp"

@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
+    android:layout_margin="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp">
+
         <RelativeLayout
+            android:id="@+id/relative_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/back_status">
@@ -36,7 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="بنزین"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         android:layout_gravity="center_horizontal"/>
                     <TextView
@@ -44,22 +42,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="حساب خانه"
-                        android:textColor="@color/black" />
+                        android:textColor="#2C2C2C" />
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="#E91E63"
-                    android:layout_margin="8dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:tint="@color/white"
-                        android:src="@drawable/ic_gas_station"
-                        android:padding="8dp"/>
-                </RelativeLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="8dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp">
+                    <RelativeLayout
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#E91E63"
+                        >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:tint="@color/white"
+                            android:src="@drawable/ic_edit"
+                            android:padding="8dp"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
 
@@ -75,10 +82,11 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="16dp"
+                android:fontFamily="@font/vazir_regular"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"/>
 
 
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
